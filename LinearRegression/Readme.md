@@ -14,9 +14,8 @@
 
 المعادلة الأساسية للخط:
 
-\[
-y = m \cdot x + b
-\]
+<img width="688" height="49" alt="image" src="https://github.com/user-attachments/assets/66a5ef0e-bad0-4835-81c8-4c2b483f7519" />
+
 
 | الرمز | المعنى |
 |-------|--------|
@@ -31,9 +30,8 @@ y = m \cdot x + b
 
 نحاول إيجاد خط يقلل الفرق بين القيمة الحقيقية \(y\) والقيمة المتوقعة \(\hat{y}\).
 
-\[
-error = y - \hat{y}
-\]
+<img width="674" height="59" alt="image" src="https://github.com/user-attachments/assets/5580c504-1d87-4e97-a973-98bab67921ab" />
+
 
 ---
 
@@ -59,9 +57,9 @@ error = y - \hat{y}
 
 عندما يكون لدينا أكثر من Feature:
 
-\[
+
 <img width="337" height="44" alt="image" src="https://github.com/user-attachments/assets/1bda9b1f-b556-4ae4-9ce5-2d01d854a7d7" />
-\]
+
 
 **مثال:** التنبؤ بسعر منزل باستخدام:
 
@@ -106,6 +104,32 @@ error = y - \hat{y}
 - Non-linear relationships
 
 ---
+from sklearn.linear_model import LinearRegression
+import numpy as np
+import matplotlib.pyplot as plt
+
+# بيانات بسيطة
+X = np.array([[1], [2], [3], [4], [5]])
+y = np.array([2, 4, 6, 8, 10])
+
+# تدريب النموذج
+model = LinearRegression()
+model.fit(X, y)
+
+print("Slope (m):", model.coef_)
+print("Intercept (b):", model.intercept_)
+
+# توقعات
+y_pred = model.predict(X)
+
+# رسم النتائج
+plt.scatter(X, y, color='blue', label='Actual')
+plt.plot(X, y_pred, color='red', label='Predicted')
+plt.xlabel('X')
+plt.ylabel('y')
+plt.title('Linear Regression Example')
+plt.legend()
+plt.show()
 
 ## 📚 المصادر
 

@@ -110,14 +110,14 @@ import matplotlib.pyplot as plt
 
 # بيانات بسيطة
 X = np.array([[1], [2], [3], [4], [5]]) \
-y = np.array([2, 4, 6, 8, 10]) \
+y = np.array([2, 4, 6, 8, 10]) 
 
 # تدريب النموذج
 model = LinearRegression() \
-model.fit(X, y) \
+model.fit(X, y) 
 
 print("Slope (m):", model.coef_) \
-print("Intercept (b):", model.intercept_)\
+print("Intercept (b):", model.intercept_)
 
 # توقعات
 y_pred = model.predict(X)
@@ -129,7 +129,7 @@ plt.xlabel('X') \
 plt.ylabel('y') \
 plt.title('Linear Regression Example') \
 plt.legend() \
-plt.show() \
+plt.show() 
 
 ## 📚 المصادر
 

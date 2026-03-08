@@ -1,77 +1,178 @@
-pip install -r requirements.txt
-python scripts/generate_plots.py
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.linear_model import LinearRegression
+# 📊 Linear Regression Guide
 
-sns.set(style="whitegrid")
+هذا الملف يحتوي على شرح شامل لمفهوم **Linear Regression** في تعلم الآلة، مع توضيح أهم المفاهيم المرتبطة به.
 
-# =========================
-# 1. بيانات بسيطة للخط المستقيم
-# =========================
-X = np.array([[1],[2],[3],[4],[5]])
-y = np.array([2,4,6,8,10])
+---
 
-model = LinearRegression()
-model.fit(X, y)
-y_pred = model.predict(X)
+## 1️⃣ ما هو Linear Regression
 
-plt.figure(figsize=(6,4))
-plt.scatter(X, y, color='blue', label='Actual')
-plt.plot(X, y_pred, color='red', label='Predicted')
-plt.xlabel('X')
-plt.ylabel('y')
-plt.title('Linear Regression Example')
-plt.legend()
-plt.savefig('../images/linear_fit.png')
-plt.close()
+**Linear Regression** هو نموذج إحصائي يهدف لإيجاد علاقة خطية بين المتغيرات.  
+الفكرة الأساسية: إيجاد أفضل خط مستقيم يمر بين النقاط بحيث يقلل الفرق بين:
 
-# =========================
-# 2. تأثير Outliers
-# =========================
-X_out = np.array([[1],[2],[3],[4],[5],[6]])
-y_out = np.array([2,4,6,8,10,30])  # نقطة شاذة
+- القيم الحقيقية
+- القيم المتوقعة من النموذج
 
-model.fit(X_out, y_out)
-y_out_pred = model.predict(X_out)
+المعادلة الأساسية للخط:
 
-plt.figure(figsize=(6,4))
-plt.scatter(X_out, y_out, color='blue', label='Actual')
-plt.plot(X_out, y_out_pred, color='red', label='Predicted')
-plt.xlabel('X')
-plt.ylabel('y')
-plt.title('Effect of Outliers on Linear Regression')
-plt.legend()
-plt.savefig('../images/outliers.png')
-plt.close()
+\[
+y = m \cdot x + b
+\]
 
-# =========================
-# 3. Gradient Descent Visualization
-# =========================
-# بيانات بسيطة
-X_g = np.array([1,2,3,4,5])
-y_g = np.array([2,4,6,8,10])
+| الرمز | المعنى |
+|-------|--------|
+| y     | القيمة المتوقعة |
+| x     | المتغير (Feature) |
+| m     | الميل (Slope) |
+| b     | نقطة التقاطع مع محور y (Intercept) |
 
-m, b = 0, 0  # البداية
-learning_rate = 0.1
-iterations = 20
+---
 
-plt.figure(figsize=(6,4))
-plt.scatter(X_g, y_g, color='blue', label='Actual')
+## 2️⃣ فكرة عمل النموذج
 
-for _ in range(iterations):
-    y_pred_g = m*X_g + b
-    plt.plot(X_g, y_pred_g, color='red', alpha=0.3)
-    error = y_g - y_pred_g
-    m += learning_rate * np.dot(error, X_g) / len(X_g)
-    b += learning_rate * error.mean()
+نحاول إيجاد خط يقلل الفرق بين القيمة الحقيقية \(y\) والقيمة المتوقعة \(\hat{y}\).
 
-plt.title('Gradient Descent Steps')
-plt.xlabel('X')
-plt.ylabel('y')
-plt.legend()
-plt.savefig('../images/gradient_descent.png')
-plt.close()
+\[
+error = y - \hat{y}
+\]
 
-print("All plots generated in 'images/' folder!")
+---
+
+## 3️⃣ حساب الميل (Slope) ونقطة التقاطع
+
+**الميل:**
+
+\[
+m = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
+\]
+
+**Intercept:**
+
+\[
+b = \bar{y} - m \cdot \bar{x}
+\]
+
+حيث:
+
+| الرمز | المعنى |
+|-------|--------|
+| \(x_i\) | قيمة المتغير |
+| \(y_i\) | القيمة الحقيقية |
+| \(\bar{x}\) | متوسط x |
+| \(\bar{y}\) | متوسط y |
+
+---
+
+## 4️⃣ Multiple Linear Regression
+
+عندما يكون لدينا أكثر من Feature:
+
+\[
+y = m_1 x_1 + m_2 x_2 + ... + m_n x_n + b
+\]
+
+**مثال:** التنبؤ بسعر منزل باستخدام:
+
+- المساحة
+- عدد الغرف
+- الموقع
+
+---
+
+## 5️⃣ قياس جودة النموذج
+
+### Mean Squared Error (MSE)
+
+\[
+MSE = \frac{1}{n} \sum (y - \hat{y})^2
+\]
+
+### Root Mean Squared Error (RMSE)
+
+\[
+RMSE = \sqrt{MSE}
+\]
+
+### معامل التحديد \(R^2\)
+
+\[
+R^2 = 1 - \frac{SS_{res}}{SS_{tot}}
+\]
+
+- 0 → النموذج سيء  
+- 1 → النموذج مثالي
+
+---
+
+## 6️⃣ مشاكل شائعة
+
+- **Outliers**: Linear Regression حساس للقيم الشاذة  
+- **Overfitting**: عند التعقيد الكبير للنموذج  
+- **Multicollinearity**: وجود تداخل بين Features  
+- **Non-linear relationships**: عند عدم خطية العلاقة
+
+---
+
+## 7️⃣ Gradient Descent (تعديل الخط تدريجيًا)
+
+\[
+b' = b + h \cdot (y - \hat{y})
+\]
+
+\[
+m' = m + h \cdot x \cdot (y - \hat{y})
+\]
+
+حيث \(h\) هو **learning rate**.
+
+---
+
+## 8️⃣ Regularization
+
+لتجنب **Overfitting**:
+
+- **L1 Norm (Lasso Regression)**: اختيار Features مهمة  
+\(\|B\|_1 = |B_1| + |B_2| + ... + |B_n|\)
+
+- **L2 Norm (Ridge Regression)**: تقليل معاملات النموذج  
+\(\|B\|_2 = \sqrt{B_1^2 + B_2^2 + ... + B_n^2}\)
+
+---
+
+## 9️⃣ Polynomial Regression
+
+عندما تكون العلاقة غير خطية:
+
+\[
+y = B_0 + B_1 x + B_2 x^2 + B_3 x^3
+\]
+
+**مثال:** منحنى يصف نمو أو تغير معقد بدل خط مستقيم.
+
+---
+
+## 🔟 مقارنة سريعة للنماذج
+
+| النموذج | الاستخدام |
+|---------|-----------|
+| Linear Regression | علاقة خطية بسيطة |
+| Multiple Linear | أكثر من Feature |
+| Ridge | تقليل معاملات لتجنب Overfitting |
+| Lasso | اختيار Features مهمه |
+| Polynomial | علاقة غير خطية |
+
+---
+
+## 1️⃣1️⃣ أهم المشاكل في Linear Regression
+
+- Overfitting  
+- Outliers  
+- Multicollinearity  
+- Non-linear relationships
+
+---
+
+## 📚 المصادر
+
+- [Scikit-Learn Linear Regression](https://scikit-learn.org/stable/modules/linear_model.html)  
+- [Machine Learning Mastery](https://machinelearningmastery.com/linear-regression-for-machine-learning/)  
+- [Towards Data Science](https://towardsdatascience.com/linear-regression-detailed-view-5a6c1c3a8b59)

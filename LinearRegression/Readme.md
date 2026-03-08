@@ -1,3 +1,5 @@
+pip install -r requirements.txt
+python scripts/generate_plots.py
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns

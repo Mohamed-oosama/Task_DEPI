@@ -41,15 +41,8 @@ error = y - \hat{y}
 
 **الميل:**
 
-\[
-m = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
-\]
+<img width="445" height="186" alt="image" src="https://github.com/user-attachments/assets/2aaff2e3-d3fd-4fab-a1ca-052b9db78c6e" />
 
-**Intercept:**
-
-\[
-b = \bar{y} - m \cdot \bar{x}
-\]
 
 حيث:
 
@@ -67,7 +60,7 @@ b = \bar{y} - m \cdot \bar{x}
 عندما يكون لدينا أكثر من Feature:
 
 \[
-y = m_1 x_1 + m_2 x_2 + ... + m_n x_n + b
+<img width="337" height="44" alt="image" src="https://github.com/user-attachments/assets/1bda9b1f-b556-4ae4-9ce5-2d01d854a7d7" />
 \]
 
 **مثال:** التنبؤ بسعر منزل باستخدام:
@@ -80,28 +73,8 @@ y = m_1 x_1 + m_2 x_2 + ... + m_n x_n + b
 
 ## 5️⃣ قياس جودة النموذج
 
-### Mean Squared Error (MSE)
+<img width="475" height="363" alt="image" src="https://github.com/user-attachments/assets/5e50abb2-8b53-4efa-b736-f68afcd601e8" />
 
-\[
-MSE = \frac{1}{n} \sum (y - \hat{y})^2
-\]
-
-### Root Mean Squared Error (RMSE)
-
-\[
-RMSE = \sqrt{MSE}
-\]
-
-### معامل التحديد \(R^2\)
-
-\[
-R^2 = 1 - \frac{SS_{res}}{SS_{tot}}
-\]
-
-- 0 → النموذج سيء  
-- 1 → النموذج مثالي
-
----
 
 ## 6️⃣ مشاكل شائعة
 
@@ -111,44 +84,7 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}}
 - **Non-linear relationships**: عند عدم خطية العلاقة
 
 ---
-
-## 7️⃣ Gradient Descent (تعديل الخط تدريجيًا)
-
-\[
-b' = b + h \cdot (y - \hat{y})
-\]
-
-\[
-m' = m + h \cdot x \cdot (y - \hat{y})
-\]
-
-حيث \(h\) هو **learning rate**.
-
----
-
-## 8️⃣ Regularization
-
-لتجنب **Overfitting**:
-
-- **L1 Norm (Lasso Regression)**: اختيار Features مهمة  
-\(\|B\|_1 = |B_1| + |B_2| + ... + |B_n|\)
-
-- **L2 Norm (Ridge Regression)**: تقليل معاملات النموذج  
-\(\|B\|_2 = \sqrt{B_1^2 + B_2^2 + ... + B_n^2}\)
-
----
-
-## 9️⃣ Polynomial Regression
-
-عندما تكون العلاقة غير خطية:
-
-\[
-y = B_0 + B_1 x + B_2 x^2 + B_3 x^3
-\]
-
-**مثال:** منحنى يصف نمو أو تغير معقد بدل خط مستقيم.
-
----
+<img width="555" height="613" alt="image" src="https://github.com/user-attachments/assets/c78e0f5b-e00f-4990-9a20-dde96c31e5e4" />
 
 ## 🔟 مقارنة سريعة للنماذج
 
